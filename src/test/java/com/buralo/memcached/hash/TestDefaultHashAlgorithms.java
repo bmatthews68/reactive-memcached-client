@@ -16,7 +16,6 @@
 
 package com.buralo.memcached.hash;
 
-import com.buralo.memcached.hash.DefaultHashAlgorithms;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,8 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestDefaultHashAlgorithms {
 
     private static void assertHash(final DefaultHashAlgorithms algorithm,
-                            final String key,
-                            final long expectedValue) {
+                                   final String key,
+                                   final long expectedValue) {
         assertThat(algorithm.hash(key)).isEqualTo(expectedValue);
     }
 
@@ -96,5 +95,39 @@ public class TestDefaultHashAlgorithms {
         assertHash(DefaultHashAlgorithms.KETAMA, "14745", 2580083742L);
         assertHash(DefaultHashAlgorithms.KETAMA, "105106", 3986458246L);
         assertHash(DefaultHashAlgorithms.KETAMA, "355107", 3611074310L);
+    }
+
+    @Test
+    public void verifyMysqlHashAlgorithm() {
+        assertHash(DefaultHashAlgorithms.MYSQL, "abcdefghijklmnopqrstuvwxyz1234567890", 3201966090L);
+    }
+
+    @Test
+    public void verifyElfHashAlgorithm() {
+        assertHash(DefaultHashAlgorithms.ELF, "jdfgsdhfsdfsd 6445dsfsd7fg/*/+bfjsdgf%$^", 248446350L);
+    }
+
+    @Test
+    public void verifyRsHashAlgorithm() {
+        assertHash(DefaultHashAlgorithms.RS, "abcdefghijklmnopqrstuvwxyz1234567890", 1950351854L);
+    }
+
+    @Test
+    public void verifyLuaHashAlgorithm() {
+        assertHash(DefaultHashAlgorithms.LUA, "abcdefghijklmnopqrstuvwxyz1234567890", 1994113120L);
+    }
+
+    @Test
+    public void verifyOneAtATimeHashAlgorithm() {
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "sausage", 2834523395L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "blubber", 1103975961L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "pencil", 3318404908L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "cloud", 670342857L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "moon", 2385442906L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "water", 3403519606L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "computer", 2375101981L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "school", 1513618861L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "network", 2981967937L);
+        assertHash(DefaultHashAlgorithms.ONE_AT_A_TIME, "hammer", 1218821080L);
     }
 }

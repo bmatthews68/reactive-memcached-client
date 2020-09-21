@@ -16,7 +16,20 @@
 
 package com.buralo.memcached.hash;
 
+/**
+ * Calculate the hash of a Memcached key.
+ *
+ * @author Brian Matthews
+ * @since 1.0.0
+ */
+@FunctionalInterface
 public interface HashAlgorithm {
 
+    /**
+     * Calculate the hash of a Memcached key.
+     *
+     * @param key The Memcached key.
+     * @return The hash.
+     */
     long hash(String key);
 }
