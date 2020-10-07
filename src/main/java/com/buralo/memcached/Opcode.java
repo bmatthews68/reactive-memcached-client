@@ -46,4 +46,13 @@ public enum Opcode {
     public byte code() {
         return code;
     }
+
+    public static Opcode fromCode(final byte code) {
+        for (final Opcode opcode : values()) {
+            if (opcode.code == code) {
+                return opcode;
+            }
+        }
+        return null;
+    }
 }
