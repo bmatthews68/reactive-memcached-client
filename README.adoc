@@ -1,0 +1,27 @@
+= Reactive Client for Memcached
+
+This project is a reactive client for https://memcached.org/[Memcached] built
+using https://projectreactor.io/[Project Reactor].
+
+== Requirements
+
+* Java 8+
+
+== Maven Central Coordinates
+
+The *Reactive Memcached Client* will be published in Maven Central at the
+following coordinates:
+
+[source,xml]
+----
+<dependency>
+  <groupId>com.buralo.memcached</groupId>
+  <artifactId>reactive-memcached-client</artifactId>
+  <version>1.0.0</version>
+</dependency>
+----
+
+== License & Source Code
+
+The JCRUnit is made available under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache License] and the source
+code is hosted on http://github.com/[GitHub] at https://github.com/bmatthews68/reactive-memcached-client.
